@@ -24,10 +24,27 @@ class MeraList:
         return "[" + result[:-1] + "]"
 
     def __getitem__(self, index):
-        if 0 <= index < self.n:
-            return self.A[index]
+        if isinstance(index, int):
+            if 0 <= index < self.n:
+                return self.A[index]
+            else:
+                raise IndexError("Index out of bounds")
+        elif isinstance(index, slice):
+            # [1:2:3]
+            start = index.start
+            stop = index.stop
+            step = index.step
+            return self.A[start:stop:step]
         else:
+            raise TypeError("Invalid index type")
+
+    def __delitem__(self, index):
+        # delete
+        if index < 0 or index >= self.n:
             raise IndexError("Index out of bounds")
+        for i in range(index, self.n - 1):
+            self.A[i] = self.A[i + 1]
+        self.n -= 1
 
     def __resize__(self, new_capacity):
         B = self.__make_array__(new_capacity)
@@ -39,6 +56,11 @@ class MeraList:
 
         # reassign A
         self.A = B
+
+    def __setitem__(self, index, item):
+        if index < 0 or index >= self.n:
+            raise IndexError("Index out of bounds")
+        self.A[index] = item
 
     def append(self, item):
         if self.n == self.size:
@@ -67,7 +89,6 @@ class MeraList:
     def insert(self, index, item):
         if index < 0 or index > self.n:
             raise IndexError("Index out of bounds")
-            return
         if self.n == self.size:
             self.__resize__(self.size * 2)
         for i in range(self.n, index, -1):
@@ -75,15 +96,6 @@ class MeraList:
 
         self.A[index] = item
         self.n += 1
-
-    def __delitem__(self, index):
-        # delete
-        if index < 0 or index >= self.n:
-            raise IndexError("Index out of bounds")
-            return
-        for i in range(index, self.n - 1):
-            self.A[i] = self.A[i + 1]
-        self.n -= 1
 
     def remove(self, item):
         index = self.index(item)
@@ -93,4 +105,8 @@ class MeraList:
             raise ValueError("Value not in list")
 
     def sort(self):
-        pass
+        from merge_sort import mergesort
+
+        merge_object = mergesort()
+
+        return merge_object.merge_sort(self.A, 0, self.n - 1)

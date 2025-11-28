@@ -1,8 +1,11 @@
-from mylinked import Node
+from mylinked import LinkedList
 
-a = node(1)
-b = node(2)
-c = node(3)
 
-a.next = b
-b.next = c
+L = LinkedList()
+
+L.insert_head(10)
+L.insert_head(20)
+L.insert_head(30)
+
+print(len(L))
+print(L)

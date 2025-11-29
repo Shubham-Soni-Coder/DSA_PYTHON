@@ -73,3 +73,31 @@ class LinkedList:
             self.n += 1
         else:
             print("item not found")
+
+    def clear(self):
+        self.head = None
+        self.n = 0
+
+    def delete_head(self):
+        if self.head == None:
+            return
+
+        self.head = self.head.next
+        self.n -= 1
+
+    def pop(self):
+
+        if self.head == None:
+            return "Empty"
+
+        curr = self.head
+
+        if curr.next == None:
+            return self.delete_head()
+
+        while curr.next.next != None:
+            curr = curr.next
+
+        # curr -> second last node
+        curr.next = None
+        self.n -= 1

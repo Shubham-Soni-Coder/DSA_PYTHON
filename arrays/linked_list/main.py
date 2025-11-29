@@ -12,3 +12,6 @@ L.append(60)
 print(L)
 L.insert_after(20, 25)
 print(L)
+
+L.clear()
+print(L.__len__())

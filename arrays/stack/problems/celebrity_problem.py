@@ -8,7 +8,16 @@ popped element is celebrity or not
 
 """
 
-from stock_linked import stock
+import sys
+import os
+
+# get the Parent dic
+parent_dir = os.path.dirname(os.path.dirname(__file__))
+# join the path
+sys.path.append(os.path.join(parent_dir, "stack_linkedlist"))
+
+from stack_linked import stock
+
 
 L = [[0, 0, 1, 1], [0, 0, 1, 0], [0, 0, 0, 0], [0, 0, 1, 0]]
 

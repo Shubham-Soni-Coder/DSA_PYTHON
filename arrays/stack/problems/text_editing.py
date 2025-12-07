@@ -10,7 +10,15 @@ when redo use we pop the element from the second stack and push it in the first 
 
 """
 
-from stock_linked import stock
+import sys
+import os
+
+# get the Parent dic
+parent_dir = os.path.dirname(os.path.dirname(__file__))
+# join the path
+sys.path.append(os.path.join(parent_dir, "stack_linkedlist"))
+
+from stack_linked import stock
 
 
 def text_editor(string: str, pattron: str):

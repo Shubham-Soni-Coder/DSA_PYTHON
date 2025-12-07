@@ -6,12 +6,9 @@ L = LinkedList()
 L.insert_head(10)
 L.insert_head(20)
 L.insert_head(30)
+L.append(50)
 
-print(L)
-L.append(60)
-print(L)
-L.insert_after(20, 25)
-print(L)
+print(L.odd_sum())
 
-L.clear()
-print(L.__len__())
+
+pointer()

@@ -24,6 +24,18 @@ class LinkedList:
             conn = conn.next
         return result[:-2]
 
+    def __getitem__(self, index):
+        curr = self.head
+        pos = 0
+
+        while curr != None:
+            if pos == index:
+                return curr.data
+            pos += 1
+            curr = curr.next
+
+        raise IndexError("Index out of range")
+
     def insert_head(self, value):
         # Create a new node
         new_node = Node(value)
@@ -101,3 +113,55 @@ class LinkedList:
         # curr -> second last node
         curr.next = None
         self.n -= 1
+
+    def remove(self, value):
+        curr = self.head
+
+        if curr == None:
+            return "Empty"
+
+        if curr.data == value:
+            return self.delete_head()
+
+        while curr.next != None:
+            if curr.next.data == value:
+                break
+            curr = curr.next
+
+        if curr.next == None:
+            return "Not Found"
+        else:
+            curr.next = curr.next.next
+            self.n -= 1
+
+    def search(self, item):
+        curr = self.head
+        pos = 0
+        while curr != None:
+            if curr.data == item:
+                return pos
+            curr = curr.next
+            pos += 1
+        return "Not Found"
+
+    def replace_max(self, value):
+        temp = self.head
+        max = temp
+
+        while temp != None:
+            if temp.data > max.data:
+                max = temp
+            temp = temp.next
+
+        max.data = value
+
+    def odd_sum(self):
+        curr = self.head  # 0
+        pos = 0
+        sum = 0
+        while curr != None:
+            if pos % 2 != 0:
+                sum += curr.data
+            pos += 1
+            curr = curr.next
+        return sum

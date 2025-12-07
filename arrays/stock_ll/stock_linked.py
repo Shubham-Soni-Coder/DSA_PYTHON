@@ -35,3 +35,11 @@ class stock:
             data = self.top.data
             self.top = self.top.next
             return data
+
+    def size(self):
+        temp = self.top
+        count = 0
+        while temp != None:
+            count += 1
+            temp = temp.next
+        return count

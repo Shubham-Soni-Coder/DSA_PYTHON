@@ -1,0 +1,1 @@
+"Hasing function implementation"

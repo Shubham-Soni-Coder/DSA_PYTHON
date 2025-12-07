@@ -32,4 +32,6 @@ class stock:
         if self.top == None:
             return None
         else:
+            data = self.top.data
             self.top = self.top.next
+            return data
